@@ -15,6 +15,7 @@ import {
   Timer,
   Workflow,
   Home,
+  Store,
 } from "lucide-react";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
@@ -173,7 +174,11 @@ export const Navigation: React.FC<NavigationProps> = ({ togglePomodoro }) => {
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
           <Item label="Home" icon={Home} onClick={() => router.push("/home")} />
-
+          <Item
+            label="Store Owner"
+            icon={Store}
+            onClick={() => router.push("/store-management")}
+          />
           <Item
             label="Calendar"
             icon={CalendarDays}
