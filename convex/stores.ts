@@ -106,3 +106,49 @@ export const updateInventoryItem = mutation({
     return { success: true };
   },
 });
+
+// Query to fetch store by name and password
+export const getStoreByCredentials = query({
+  args: { name: v.string(), password: v.string() },
+  handler: async (ctx, { name, password }) => {
+    const store = await ctx.db
+      .query("stores")
+      .filter((q) => q.eq(q.field("name"), name))
+      .first();
+
+    if (!store || store.password !== password) {
+      throw new Error("Invalid store credentials");
+    }
+
+    return store;
+  },
+});
+
+// Mutation to update inventory after checkout
+export const checkoutItem = mutation({
+  args: {
+    storeId: v.id("stores"),
+    itemId: v.string(),
+    quantity: v.number(),
+  },
+  handler: async (ctx, { storeId, itemId, quantity }) => {
+    const store = await ctx.db.get(storeId);
+    if (!store) {
+      throw new Error("Store not found");
+    }
+
+    const updatedInventory = store.inventory.map((item) => {
+      if (item.itemId === itemId) {
+        if (item.stock < quantity) {
+          throw new Error("Insufficient stock");
+        }
+        return { ...item, stock: item.stock - quantity };
+      }
+      return item;
+    });
+
+    await ctx.db.patch(storeId, { inventory: updatedInventory });
+
+    return { success: true };
+  },
+});
