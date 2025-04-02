@@ -1,37 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏪 store-management-web
 
-## Getting Started
+A modern, full-stack **store management system** built with **Next.js**, **Convex**, and **Chakra UI**, designed to streamline operations for both **store owners** and **cashiers**. This web app features secure role assignment, inventory control, checkout functionality, and rich document editing — all powered by the real-time Convex backend.
 
-First, run the development server:
+---
+
+
+## 🛠 Tech Stack
+
+- 🧠 [Convex](https://www.convex.dev) (backend database + real-time API)
+- ⚛️ Next.js (frontend framework)
+- 🌈 Chakra UI (responsive components & theming)
+- 🔐 Clerk (authentication)
+- 📝 Custom Markdown/Blocknote document editor
+- 📦 Type-safe data with Convex `defineSchema`
+
+---
+
+## ✨ Features
+
+### 🔐 Role-Based Access
+- Cashiers can log in to individual stores and manage checkouts
+- Owners can create and manage multiple stores and inventories
+
+### 📦 Inventory Management
+- Add, update, delete items
+- Sort, search, and filter by price, name, stock
+- Pagination, low stock alerts
+
+### 🛒 Cashier Dashboard
+- Secure store login via name/password
+- Search & filter inventory
+- Checkout functionality reduces stock
+
+### 🧾 Owner Dashboard
+- View all owned stores
+- View sales, debts, and inventories
+- Add new stores with passwords
+- Manage store inventory with full CRUD access
+
+### 📝 Document Notes
+- Create and edit rich documents using a custom editor
+- Cover image, icon, publish state
+- Store notes in Convex `documents` table
+
+---
+
+## 🔧 Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/store-management-web.git
+cd store-management-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Set Up convex
+```
+npx convex dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+ ###🔐 Authentication
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ This app uses clerk for uses authentication. Set up your .env.local
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CONVEX_URL=your_convex_url
+```
+ 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Store-management-web
