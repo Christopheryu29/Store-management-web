@@ -67,7 +67,7 @@ npx convex dev
 
 ---
 
-###🔐 Authentication
+### 🔐 Authentication
 
  This app uses clerk for uses authentication. Set up your .env.local
 ```
